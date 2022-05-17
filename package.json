@@ -1,0 +1,36 @@
+{
+  "name": "shop",
+  "version": "1.0.0",
+  "description": "mern shopping 3li",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node backend/server",
+    "server": "nodemon backend/server",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node backend/seeders",
+    "data:destroy": "node backend/seeders -d"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/F0u4d8/shop.git"
+  },
+  "author": "Fouad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/F0u4d8/shop/issues"
+  },
+  "homepage": "https://github.com/F0u4d8/shop#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "concurrently": "^7.1.0",
+    "crypto-browserify": "^3.12.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.0",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.1",
+    "nodemon": "^2.0.15"
+  }
+}

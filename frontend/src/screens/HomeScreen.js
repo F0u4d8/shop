@@ -5,21 +5,24 @@ import Product from '../components/Product';
 import { listProducts } from '../actions/productActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import { useParams } from 'react-router-dom';
+import ProductCarousel from '../components/ProductCarousel';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
+  const {keyWord} = useParams()
 
   const productList = useSelector((state) => state.productList);
 
   const { loading, error, products } = productList;
 
   useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch]);
+    dispatch(listProducts(keyWord));
+  }, [dispatch , keyWord]);
 
   return (
     <>
-      
+      {!keyWord && <ProductCarousel/>  }
       {loading ? (
         <Loader/>
       ) : error ? (
@@ -33,7 +36,7 @@ const HomeScreen = () => {
           ))}
         </Row>
       )}
-      <h1>Latest Products</h1>
+    
     </>
   );
 };

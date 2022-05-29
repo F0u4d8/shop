@@ -6,7 +6,7 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { getUserDetails, updateUserProfile } from '../actions/userActions';
 
-const ProfileScreen = (props) => {
+const ProfileScreen = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

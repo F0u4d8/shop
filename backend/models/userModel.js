@@ -9,6 +9,11 @@ const userSchema = mongoose.Schema(
    portFeulle: {type : Number , required : true , default: 0},
     isAdmin: { type: Boolean, required: true, default: false },
     adress: { type: String, required: false  },
+    isSeller: {
+      type: Boolean,
+      require: true,
+      default: false,
+    },
   },
   { timestamps: true }
 );

@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import productRoutes from './routes/productsRoute.js';
 import uploadRoutes  from './routes/uploadRoutes.js';
 import userRoutes from './routes/userRoutes.js'
+import requestRoutes from './routes/requestRoutes.js'
 import connectDB from './config/db.js';
 import { errorHandler, notFound } from './middleware/errorMiddleware.js';
 import path from 'path'
@@ -28,7 +29,7 @@ app.get('/', (req, res) => {
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/upload', uploadRoutes);
-
+app.use('api/request' , requestRoutes)
 
 
 const __dirname = path.resolve()

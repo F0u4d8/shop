@@ -24,12 +24,17 @@ const commentSchema = mongoose.Schema(
 );
 const productSchema = mongoose.Schema(
   {
-    user: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },
+    seller: {
+      type: mongoose.Schema.Types.ObjectId,
+      require: true,
+      ref: "User",
+    },
+    
     name: { type: String, required: true },
     image: { type: String, required: true },
     category: { type: String, required: true },
     prix: { type: Number, required: true, default: 0 },
-    adress: { type: String, required: true },
+    adress: { type: String, required: false },
     description: { type: String  },
     isApproved: { type: Boolean, required: true, default: false },
     numTlf: { type: Number, required: true },

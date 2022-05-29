@@ -172,6 +172,7 @@ dispatch({type:PRODUCT_CREATE_REVIEW_RESET})
                 </ListGroup.Item>
               </ListGroup>
             </Col>
+            <h2>{product.creatorName}</h2>
           </Row>
         </>
       )}

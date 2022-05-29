@@ -2,8 +2,10 @@ import Product from '../models/productModel.js';
 import asyncHandler from 'express-async-handler';
 
 const getProducts = asyncHandler(async (req, res) => {
-  const keyWord = req.query.keyWord ? {name: {$regex: req.query.keyWord , $options:'i'}} : {}
-  const products = await Product.find({...keyWord});
+  const keyWord = req.query.keyWord
+    ? { name: { $regex: req.query.keyWord, $options: 'i' } }
+    : {};
+  const products = await Product.find({ ...keyWord });
   res.json(products);
 });
 
@@ -31,20 +33,30 @@ const deleteProductById = asyncHandler(async (req, res) => {
 });
 
 const createProduct = asyncHandler(async (req, res) => {
+  const {
+    name,
+    prix,
+
+    image,
+    category,
+    adress,
+    description,
+    numTlf,
+    quantity,
+  } = req.body;
   const product = new Product({
-    name: 'sample name',
-    prix: 0,
-    user: req.user._id,
-    image: '/images/sample.jpg',
-    category: 'sample category',
-    adress: 'dfsgdfg',
-    description: 'gfdsgsd',
-    numTlf: 1232564,
-    quantity: 200,
+    name,
+    prix,
+    seller: req.user._id,
+    image,
+    category,
+    adress,
+    numTlf,
+    quantity,
+    description,
   });
   const createdProduct = await product.save();
-
-  res.status(201).json(product);
+  res.status(201).json(createdProduct);
 });
 
 const updateProduct = asyncHandler(async (req, res) => {
@@ -63,8 +75,7 @@ const updateProduct = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id);
 
   if (product) {
-    (product.name = name),
-      (product.prix = prix),
+    (product.prix = prix),
       (product.category = category),
       (product.adress = adress),
       (product.description = description),
@@ -114,18 +125,41 @@ const createProductReview = asyncHandler(async (req, res) => {
   }
 });
 
-
 const getTopProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({}).sort({rating: -1}).limit(3)
+  const products = await Product.find({}).sort({ rating: -1 }).limit(3);
 
-res.json(products)
-
+  res.json(products);
 });
+
+
+const getProductsForSeller = asyncHandler(async (req, res) => {
+  const user = req.user;
+  const products = await Product.find({ seller: user.id });
+  if (products) {
+    res.json(products);
+  } else {
+    res.status(400);
+    throw new Error("Cant get product lists");
+  }
+});
+
+const getProductsByCategory = asyncHandler(async (req, res) => {
+  const products = await Product.find({
+    category: req.params.category,
+  })
+
+  res.json( products )
+})
+
+
 export {
   getProducts,
   getProductById,
   deleteProductById,
   createProduct,
   updateProduct,
-  createProductReview,getTopProducts
+  createProductReview,
+  getTopProducts,getProductsForSeller,getProductsByCategory
 };
+
+

@@ -1,26 +1,58 @@
-import React from 'react';
-import { Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { Card, Row, Col } from 'react-bootstrap'
+import Rating from './Rating'
+import {
+  addToWishList,
+  deleteFromWishlist,
+  
+} from '../actions/userActions'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Product = ({ product }) => {
+
+
+
+
+
   return (
-    <Card className="my-3 p-3 rounded">
-      <Link to={`/product/${product._id}`}>
-        <Card.Img src={product.image} variant="top" />
-      </Link>
+    <>
+      <Card className="my-1 p-3 rounded mb-3 Product-main-card">
+        <div>
+      
 
-      <Card.Body>
-        <Link to={`/product/${product._id}`}>
-          <Card.Title as="div">
-            <strong>{product.name}</strong>
-          </Card.Title>
-        </Link>
+          <Link to={`/product/${product._id}`}>
+            <img
+              src={product.image}
+              alt={product.name}
+              className=" ProductL-img"
+            />
+          </Link>
+        </div>
 
-        <Card.Text as='div'><div className='my-2'>{product.adresse}</div></Card.Text>
-        <Card.Text as='h3'><div className='my-2'>{product.prix}</div></Card.Text>
-      </Card.Body>
-    </Card>
-  );
-};
+        <Card.Body>
+          <Link to={`/product/${product._id}`}>
+            <Card.Title as="div">
+              <strong>{product.name}</strong>
+            </Card.Title>
+          </Link>
 
-export default Product;
+          <Card.Text as="div">
+            <Rating
+              value={product.rating}
+              text={`${product.numReviews} reviews`}
+            />
+          </Card.Text>
+
+  
+            <Card.Text className="price-row" as="h5">
+            {product.prix}
+            </Card.Text>
+          
+        </Card.Body>
+      </Card>
+    </>
+  )
+}
+
+export default Product

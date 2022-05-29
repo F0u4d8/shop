@@ -22,3 +22,16 @@ padding: 1rem 0;
     padding: 0.5rem;
     
       }
+
+
+      .Product-main-card {
+        width: 400px;
+        height: 400px;
+      }
+      
+      .ProductL-img {
+        height: auto;
+        max-height: 300px;
+        width: auto;
+        max-width: 300px;
+      }

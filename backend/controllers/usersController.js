@@ -11,7 +11,7 @@ const authUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
-
+isSeller:user.isSeller,
       portFeulle: user.portFeulle,
       isAdmin: user.isAdmin,
       adress: user.adress,
@@ -41,6 +41,7 @@ const registerUser = asyncHandler(async (req, res) => {
       email: user.email,
       portFeulle: user.portFeulle,
       isAdmin: user.isAdmin,
+      isSeller:user.isSeller,
       adress: user.adress,
       token: generateToken(user._id),
     });
@@ -61,6 +62,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
       password: user.password,
       portFeulle: user.portFeulle,
       isAdmin: user.isAdmin,
+      isSeller:user.isSeller,
       adress: user.adress,
     });
   } else {
@@ -84,7 +86,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
-
+isSeller:user.isSeller,
       portFeulle: updatedUser.portFeulle,
       isAdmin: updatedUser.isAdmin,
       adress: updatedUser.adress,
@@ -141,13 +143,14 @@ const updateUser = asyncHandler(async (req, res) => {
     user.email = req.body.email || user.email;
     user.adress = req.body.adress || user.adress;
    user.isAdmin = req.body.isAdmin 
+   user.isSeller = req.body.isSeller
    user.portFeulle = req.body.portFeulle || user.portFeulle
     const updatedUser = await user.save();
     res.json({
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
-
+isSeller:updatedUser.isSeller,
       portFeulle: updatedUser.portFeulle,
       isAdmin: updatedUser.isAdmin,
       adress: updatedUser.adress,

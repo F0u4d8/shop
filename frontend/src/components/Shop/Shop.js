@@ -89,21 +89,7 @@ const Shop = () => {
                 </CategoryListItem>
               </CategoryList>
             </SideBarCategories>
-            <SidebarFilters>
-              <SidebarFilterHeading>Product Filters</SidebarFilterHeading>
-              <ProductFilter>
-                <FilterHeading>Brand</FilterHeading>
-                <CategoryList>
-                  <CategoryListItem></CategoryListItem>
-                </CategoryList>
-              </ProductFilter>
-              <ProductFilter>
-                <FilterHeading>Price</FilterHeading>
-                <CategoryList>
-                  <CategoryListItem></CategoryListItem>
-                </CategoryList>
-              </ProductFilter>
-            </SidebarFilters>
+           
           </SideBar>
           <MainContent>
             <FilterBar></FilterBar>

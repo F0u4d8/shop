@@ -15,38 +15,45 @@ import ScrollToTop from './components/ScrolToTop';
 import Navigation from './components/Navigation/Navigation';
 import Shop from './components/Shop/Shop';
 import ProductCreateScreen from './screens/Profile/Admin/ProductCreateScreen';
-
+import RedeemScreen from './screens/RedeemScreen';
+import BuySection from './screens/BuySection';
+import RequestScreen from './screens/requestScreen/RequestScreen';
 
 function App() {
   return (
     <BrowserRouter>
-    <ScrollToTop/>
-    <Navigation/>
-      
+      <ScrollToTop />
+      <Navigation />
+
       <main className="py-3">
-        
-          <Routes>
+        <Routes>
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/admin/productlist" element={<ProductListScreen />} />
+          <Route
+            path="/admin/product/:id/edit"
+            element={<ProductEditScreen />}
+          />
+          <Route
+            path="/admin/product/create"
+            element={<ProductCreateScreen />}
+          />
 
-          <Route path="/shop" element={<Shop/>}/>
-                    <Route path="/admin/productlist" element={<ProductListScreen/>}/>
-                    <Route path="/admin/product/:id/edit" element={<ProductEditScreen/>}/>
-                    <Route path="/admin/product/create" element={<ProductCreateScreen/>}/>
-
-          <Route path="/admin/user/:id/edit" element={<UserEditScreen/>}/>
-          <Route path="/admin/userlist" element={<UserListScreen/>}/>
-          <Route path='/profile' element={<ProfileScreen/>}/>
-          <Route path='/register' element={<RegisterScreen/>}/>
-          <Route path='/login' element={<LoginScreen/>}/>
-            <Route path='/product/:id' element={<ProductScreen/>}/>
-            <Route path='/cart' element={<CartScreen/>}/>
-            <Route path='/cart/:id' element={<CartScreen/>}/>
-             <Route path="/" element={<HomeScreen/>} exact/>
-             <Route path="/shop/search/:keyWord" element={<Shop/>}/>
-             <Route path="/shop/category/:category" element={<Shop/>}/>
-            
-             </Routes>
-             
-      
+          <Route path="/admin/user/:id/edit" element={<UserEditScreen />} />
+          <Route path="/admin/userlist" element={<UserListScreen />} />
+          <Route path="/profile" element={<ProfileScreen />} />
+          <Route path="/register" element={<RegisterScreen />} />
+          <Route path="/login" element={<LoginScreen />} />
+          <Route path="/product/:id" element={<ProductScreen />} />
+          <Route path="/cart" element={<CartScreen />} />
+          <Route path="/cart/:id" element={<CartScreen />} />
+          <Route path="/" element={<HomeScreen />} exact />
+          <Route path="/shop/search/:keyWord" element={<Shop />} />
+          <Route path="/shop/category/:category" element={<Shop />} />
+          <Route path="/redeem" element={<RedeemScreen/>}/>
+          <Route path='/buySection' element={<BuySection/>}/>
+          <Route path='/request/:id' element={<RequestScreen/>}/>
+          
+        </Routes>
       </main>
       <Footer />
     </BrowserRouter>

@@ -29,14 +29,17 @@ const productSchema = mongoose.Schema(
       require: true,
       ref: "User",
     },
-    
+    sellerName: {
+      type: String,
+      require: true,
+    },
     name: { type: String, required: true },
     image: { type: String, required: true },
     category: { type: String, required: true },
     prix: { type: Number, required: true, default: 0 },
     adress: { type: String, required: false },
     description: { type: String  },
-    isApproved: { type: Boolean, required: true, default: false },
+ 
     numTlf: { type: Number, required: true },
     quantity: {type: Number, required : false},
     reviews: [reviewSchema],

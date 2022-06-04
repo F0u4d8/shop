@@ -28,7 +28,7 @@ dispatch(removeFromCart(id))
 
   const checkOutHandler = () =>{
 
-    navigate('/login?redirect=shipping')
+    navigate('/buySection')
   }
 
   return (

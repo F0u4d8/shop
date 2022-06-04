@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     Nav,
     NavbarContainer,
@@ -22,12 +22,16 @@ import { IconContext } from "react-icons/lib";
 import { useDispatch, useSelector } from "react-redux";
 import {logout} from "../../actions/userActions"
 import logo from "../../assets/logo.svg"
+import { Navigate } from "react-router-dom";
+import SearchBox from "../SearchBox"
 
 const Navigation = () => {
 
 
     let mobile = false
     const dispatch = useDispatch()
+
+
 
     const cart = useSelector((state)=>state.cart)
     const  { cartItems } = cart;
@@ -44,6 +48,7 @@ const Navigation = () => {
   const logoutHandler = () => {
     clickHandler()
     dispatch(logout())
+    Navigate('/')
   }
 
   var url = window.location.href.split('/')[3]
@@ -75,22 +80,32 @@ const Navigation = () => {
     mobile = false
   }
 
+
+ 
   return (
   <IconContext.Provider value={{ color: "#000" }}>
   <Nav>
+    
     <NavbarContainer>
+      <SearchBox/>
       <NavLogo to="/">
         <NavIcon src={logo} />
       </NavLogo>
       <HamBurgerIcon onClick={clickHandler}>
         {click ? <FaTimes /> : <FaBars />}
       </HamBurgerIcon>
-      <NavMenu click={click}>
+      <NavMenu click={click}><NavItem>
+          {userInfo && <NavLinks active={home} to="/redeem" onClick={clickHandler}>
+            {userInfo.portFeulle}
+          </NavLinks>}
+          
+        </NavItem>
         <NavItem>
           <NavLinks active={home} to="/" onClick={clickHandler}>
             Home
           </NavLinks>
         </NavItem>
+        
         <NavItem>
           {mobile
             ?

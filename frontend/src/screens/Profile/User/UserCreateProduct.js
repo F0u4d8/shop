@@ -5,12 +5,13 @@ import { Container, Form, Button, Col, Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../../components/Message";
 import Loader from "../../../components/Loader";
-import { createProduct } from "../../../actions/productActions";
-import { PRODUCT_CREATE_RESET } from "../../../constants/productConstants";
+
 import DropNotif from "../../../components/Modal";
+import { createRequest } from "../../../actions/requestActions";
+import { REQUEST_SELLER_RESET } from "../../../constants/requestConstants";
 
 
-const ProductCreateScreen = () => {
+const UserCreateProduct = () => {
     const [name, setName] = useState('');
     const [prix, setPrix] = useState(0);
     const [image, setImage] = useState('');
@@ -25,8 +26,10 @@ const navigate = useNavigate()
   
     const dispatch = useDispatch();
 
-  const productCreate = useSelector((state) => state.productCreate);
-  const { loading, error, product, success } = productCreate;
+  const requestProduct = useSelector((state) => state.requestProduct);
+  const { loading, error, success } = requestProduct;
+
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -43,7 +46,7 @@ const navigate = useNavigate()
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
-      createProduct({
+      createRequest({
         
             name,
             prix,
@@ -96,8 +99,8 @@ const navigate = useNavigate()
             heading="Create Product"
             text="Create Product Successfully"
             resetData={() => {
-              navigate(`/admin/product/${product._id}/edit`);
-              dispatch({ type: PRODUCT_CREATE_RESET });
+              navigate(`/login`);
+              dispatch({ type: REQUEST_SELLER_RESET });
             }}
           ></DropNotif>
         )}
@@ -213,4 +216,4 @@ const navigate = useNavigate()
   );
 };
 
-export default ProductCreateScreen;
+export default UserCreateProduct;

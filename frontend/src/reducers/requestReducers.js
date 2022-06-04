@@ -16,7 +16,7 @@ import {
   } from "../constants/requestConstants";
   
   
-  export const requestSellerReducer = (state = { }, action) => {
+  export const requestProductReducer = (state = { }, action) => {
     switch (action.type) {
       case REQUEST_SELLER_REQUEST:
         return { loading: true };
@@ -31,7 +31,7 @@ import {
     }
   };
   
-  export const getRequestSellerReducer = (state = { request: [] }, action) => {
+  export const getRequestProductReducer = (state = { request: [] }, action) => {
       switch (action.type) {
           case GET_REQUEST_SELLER_REQUEST:
               return { loading: true , request: [] };

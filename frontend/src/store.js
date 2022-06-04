@@ -11,7 +11,8 @@ import {
   productUpdateReducer,
  
 } from './reducers/productReducers';
-import { userLoginReducer, userRegisterReducer , userDetailsReducer, userUpdateProfileReducer, userListReducer, userDeleteReducer, userUpdateReducer } from './reducers/userReducers';
+import {approveRequestReducer, getRequestByIdReducer, getRequestProductReducer, requestProductReducer} from "./reducers/requestReducers"
+import { userLoginReducer, userRegisterReducer , userDetailsReducer, userUpdateProfileReducer, userListReducer, userDeleteReducer, userUpdateReducer, buySellUserReducer } from './reducers/userReducers';
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -29,6 +30,13 @@ const reducer = combineReducers({
   productUpdate: productUpdateReducer,
   productReviewCreate : productReviewCreateReducer,
   productTopRated: productTopRatedReducer,
+  requestProduct: requestProductReducer,
+  getRequests: getRequestProductReducer,
+  requestDetail: getRequestByIdReducer,
+  approveDetail:approveRequestReducer,
+  buySell:buySellUserReducer,
+  
+
   
   
   

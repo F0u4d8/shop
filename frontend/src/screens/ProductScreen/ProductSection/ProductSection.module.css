@@ -21,6 +21,13 @@
     color: #384aeb;
     margin-bottom: 10px;
   }
+  .productNumTlf {
+    font-family: "Roboto", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #384aeb;
+    margin-bottom: 10px;
+  }
   .list {
     list-style: none;
   }

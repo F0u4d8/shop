@@ -34,6 +34,7 @@ const deleteProductById = asyncHandler(async (req, res) => {
 
 const createProduct = asyncHandler(async (req, res) => {
   const {
+    
     name,
     prix,
 
@@ -45,6 +46,7 @@ const createProduct = asyncHandler(async (req, res) => {
     quantity,
   } = req.body;
   const product = new Product({
+    sellerName:req.user.name,
     name,
     prix,
     seller: req.user._id,

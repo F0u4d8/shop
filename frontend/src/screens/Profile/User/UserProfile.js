@@ -8,6 +8,8 @@ import classes from "../../ProductScreen/ProductScreen.module.css";
 import { useNavigate } from "react-router-dom";
 import UserListScreen from "../Admin/UserListScreen";
 import ProductListScreen from "../Admin/ProductListScreen";
+import UserCreateProduct from "./UserCreateProduct";
+import ManageRequestScreen from "../Admin/ManageRequests";
 
 
 const UserProfile = () => {
@@ -32,11 +34,16 @@ const navigate = useNavigate()
   let selectionShow;
   if (selection === "1") {
     selectionShow = <Details></Details>;
-  }   else if (selection === "5") {
+  }  else if (selection === "4") {
+    selectionShow = <UserCreateProduct />;
+  } else if (selection === "5") {
     selectionShow = <UserListScreen />;
   } else if (selection === "6") {
     selectionShow = <ProductListScreen />;
   } 
+  else if (selection === "8") {
+    selectionShow = <ManageRequestScreen />;
+  }
 
   return (
     <Container>
@@ -61,6 +68,15 @@ const navigate = useNavigate()
               Manage Users
             </li>
           )}
+             {userInfo && !userInfo.isAdmin && (
+            <li
+              className={classes.navItem}
+              data-selection="4"
+              onClick={changeSelection}
+            >
+              User Requests
+            </li>
+          )}
           {userInfo && (userInfo.isAdmin || userInfo.isSeller) && (
             <li
               className={classes.navItem}
@@ -70,7 +86,15 @@ const navigate = useNavigate()
               Manage Products
             </li>
           )}
-         
+          {userInfo && userInfo.isAdmin && (
+            <li
+              className={classes.navItem}
+              data-selection="8"
+              onClick={changeSelection}
+            >
+              Manage requests
+            </li>
+          )}
       
         </ul>
         {selectionShow}

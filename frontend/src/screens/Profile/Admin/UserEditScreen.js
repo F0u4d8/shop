@@ -15,11 +15,17 @@ const UserEditScreen = () => {
     const [email, setEmail] = useState('');
     const [isAdmin, setIsAdmin] = useState(false);
     const [adress, setAdress] = useState('');
+    const [portFeulle,setPort] = useState('')
 
 
     const { id } = useParams();
     const navigate=useNavigate()
   const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+ 
 
   const userDetails = useSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
@@ -38,14 +44,20 @@ const UserEditScreen = () => {
         setEmail(user.email)
         setAdress(user.adress)
         setIsAdmin(user.isAdmin)
+        setPort(user.portFeulle)
         
            }
         
-  }, [dispatch, user, id, ]);
+           if (!userInfo) {
+            navigate('/login');
+          }
+      
+
+  }, [dispatch, user, id, userInfo,navigate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(updateUser({_id:id , name,email ,adress, isAdmin}))
+    dispatch(updateUser({_id:id , name,email ,adress, isAdmin , portFeulle}))
   };
 
   return (
@@ -109,6 +121,15 @@ const UserEditScreen = () => {
                 placeholder="Enter address"
                 value={adress}
                 onChange={(e) => setAdress(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+            <Form.Group controlId="portFeulle" className="my-3">
+              <Form.Label>portFeulle</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Enter "
+                value={portFeulle}
+                onChange={(e) => setPort(e.target.value)}
               ></Form.Control>
             </Form.Group>
 

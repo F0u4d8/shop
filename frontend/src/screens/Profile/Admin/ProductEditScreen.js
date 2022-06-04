@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Container, Form, Button, Col, Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../../components/Message";
@@ -27,6 +27,10 @@ const ProductEditScreen = () => {
   
     const dispatch = useDispatch();
 
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
+  
+    const navigate = useNavigate()
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
@@ -39,7 +43,11 @@ const ProductEditScreen = () => {
   } = productUpdate;
 
   useEffect(() => {
-     
+    if (!userInfo) {
+      navigate('/login');
+    }
+
+
       if (!product.name || product._id !== id) {
         dispatch(listProductDetails(id));
       } else {
@@ -53,7 +61,7 @@ const ProductEditScreen = () => {
         setQuantity(product.quantity);
       }
     
-  }, [dispatch, id, product, succesUpdate]);
+  }, [dispatch, id, product, succesUpdate , navigate , userInfo]);
 
   const submitHandler = (e) => {
     e.preventDefault();

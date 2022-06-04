@@ -163,4 +163,87 @@ isSeller:updatedUser.isSeller,
 });
 
 
-export { authUser, getUserProfile, registerUser ,updateUserProfile , getUsers , deleteUser , getUserById , updateUser};
+const buySellUser = asyncHandler(async (req, res) => {
+  const {price , sellerId} = req.body
+  const buyer = await User.findById(req.user._id)
+ 
+
+  if (buyer) {
+   let newBP = buyer.portFeulle - price
+
+    buyer.portFeulle = newBP
+await buyer.save()
+
+res.json({
+  _id: buyer._id,
+  name: buyer.name,
+  email: buyer.email,
+isSeller:buyer.isSeller,
+  portFeulle: buyer.portFeulle,
+  isAdmin: buyer.isAdmin,
+  adress: buyer.adress,
+  token: generateToken(buyer._id),
+});
+ 
+const seller = await User.findById(sellerId)
+
+if(seller){
+
+  
+let newSP=seller.portFeulle + price
+
+seller.portFeulle = newSP
+
+await seller.save()
+
+res.json({message : 'buy and sell success'})
+}else {
+
+  res.status(404)
+  throw new Error('seller not found')
+
+}
+
+  } else {
+    res.status(404)
+    throw new Error('buyer not found')
+  }
+
+  
+});
+
+const redeem = asyncHandler(async (req, res) => {
+  const {price} = req.body
+  const buyer = await User.findById(req.user._id)
+ 
+console.log(price)
+  if (buyer) {
+    
+   let newBP = buyer.portFeulle - price
+
+    buyer.portFeulle = newBP
+await buyer.save()
+
+res.json({
+  _id: buyer._id,
+  name: buyer.name,
+  email: buyer.email,
+isSeller:buyer.isSeller,
+  portFeulle: buyer.portFeulle,
+  isAdmin: buyer.isAdmin,
+  adress: buyer.adress,
+  token: generateToken(buyer._id),
+});
+ 
+
+
+  } else {
+    res.status(404)
+    throw new Error('buyer not found')
+  }
+
+  
+});
+
+
+export { authUser, getUserProfile, registerUser ,updateUserProfile , getUsers , deleteUser , getUserById , updateUser , buySellUser , redeem};

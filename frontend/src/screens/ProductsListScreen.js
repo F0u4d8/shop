@@ -9,7 +9,7 @@ import Message from '../components/Message';
 import { createProduct, deleteProduct, listProducts } from '../actions/productActions';
 import {
   PRODUCT_CREATE_RESET,
-  PRODUCT_CREATE_SUCCESS,
+
 } from '../constants/productConstants';
 
 const ProductListScreen = () => {

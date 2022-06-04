@@ -8,7 +8,8 @@ const {data} = await axios.get(`/api/products/${id}`)
 
 dispatch({
 type: CART_ADD_ITEM , payload : {
-
+seller:data.seller,
+sellerName:data.sellerName,
 product: data._id,
 name: data.name,
 image: data.image,

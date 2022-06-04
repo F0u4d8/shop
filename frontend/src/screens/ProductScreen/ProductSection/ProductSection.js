@@ -21,11 +21,18 @@ const ProductSection = ({ product }) => {
       ></CartModal>
       <img className={classes.productImage} src={product.image} alt="Product" />
       <div className={classes.content}>
+      <h2>vandeur: </h2>
+        <h2 className={classes.productNumTlf}>{product.sellerName}</h2>
         <h3 className={classes.productName}>{product.name}</h3>
-        <h2 className={classes.productPrice}>${product.prix}</h2>
+        <h2 className={classes.productPrice}>{product.prix}</h2>
+        <h2>numero telephone : </h2>
+        <h2 className={classes.productNumTlf}>{product.numTlf}</h2>
+
+        <h2>adress: </h2>
+        <h2 className={classes.productNumTlf}>{product.adress}</h2>
         <ul className={classes.list}>
           <li>
-            <a class="active" href="/">
+            <a class="active" href={`/shop/category/${product.category}`}>
               <span>Category</span> : {product.category}
             </a>
           </li>

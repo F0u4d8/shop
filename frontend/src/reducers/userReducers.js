@@ -1,4 +1,8 @@
 import {
+  USER_BUYSELL_FAIL,
+  USER_BUYSELL_REQUEST,
+  USER_BUYSELL_RESET,
+  USER_BUYSELL_SUCCESS,
   USER_DELETE_FAIL,
   USER_DELETE_REQUEST,
   USER_DELETE_SUCCESS,
@@ -13,6 +17,10 @@ import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
   USER_LOGOUT,
+  USER_REDEEM_FAIL,
+  USER_REDEEM_REQUEST,
+  USER_REDEEM_RESET,
+  USER_REDEEM_SUCCESS,
   USER_REGISTER_FAIL,
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
@@ -150,3 +158,43 @@ case USER_UPDATE_RESET:
 };
 
 
+export const buySellUserReducer = (state = {user:{}}, action) => {
+  switch (action.type) {
+    case USER_BUYSELL_REQUEST:
+      return { loading: true };
+
+    case USER_BUYSELL_SUCCESS:
+      return { loading: false,success:true };
+
+    case USER_BUYSELL_FAIL:
+      return { loading: false, error: action.payload };
+
+
+      case USER_UPDATE_RESET:
+        return {user:{}}
+
+    default:
+      return state;
+  }
+};
+
+
+export const redeemReducer = (state = {user:{}}, action) => {
+  switch (action.type) {
+    case USER_REDEEM_REQUEST:
+      return { loading: true };
+
+    case USER_REDEEM_SUCCESS:
+      return { loading: false,success:true };
+
+    case USER_REDEEM_FAIL:
+      return { loading: false, error: action.payload };
+
+
+      case USER_REDEEM_RESET:
+        return {user:{}}
+
+    default:
+      return state;
+  }
+};

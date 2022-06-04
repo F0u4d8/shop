@@ -18,7 +18,7 @@ const Hit = ({ hit }) => {
           <Highlight attribute="name" hit={hit} tagName="mark" />
         </Link>
         <p className={classes.price}>
-          $<Highlight attribute="price" hit={hit} tagName="mark" />
+          <Highlight attribute="price" hit={hit} tagName="mark" />
         </p>
       </div>
     </div>
